@@ -11,12 +11,21 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["@testing-library/jest-dom"],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom"
+    ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1"
     },
     "transform": {
-      "^.+\\.(js|jsx)$": ["babel-jest", {"presets": ["next/babel"]}]
+      "^.+\\.(js|jsx)$": [
+        "babel-jest",
+        {
+          "presets": [
+            "next/babel"
+          ]
+        }
+      ]
     }
   },
   "dependencies": {
@@ -31,6 +40,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "autoprefixer": "^10.0.1",
+    "babel-jest": "^30.4.1",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "postcss": "^8",
