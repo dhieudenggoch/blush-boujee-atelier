@@ -52,7 +52,7 @@ export default function ProductGrid({ products, initialCategory }) {
     <div>
       {/* Filter bar */}
       <div style={{ display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:12, marginBottom:'2rem', paddingBottom:'1.25rem', borderBottom:'1px solid rgba(139,92,246,0.12)' }}>
-        <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
+        <div className="filter-bar">
           {CATS.map(c => (
             <button key={c} onClick={() => setCat(c)} style={{
               width:'auto', display:'inline-block', padding:'7px 14px',
@@ -77,7 +77,7 @@ export default function ProductGrid({ products, initialCategory }) {
           <p style={{ color:'var(--muted)', marginTop:8, fontSize:'.875rem' }}>Check back soon.</p>
         </div>
       ) : (
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(270px,1fr))', gap:20 }}>
+        <div className="product-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(270px,1fr))', gap:20 }}>
           {list.map(p => <PCard key={p.id} p={p} added={added[p.id]} onAdd={addToCart} />)}
         </div>
       )}
@@ -152,6 +152,7 @@ function PCard({ p, added, onAdd }) {
                     onClick={e => { e.preventDefault(); e.stopPropagation(); if (!oos) setSelVariant(v) }}
                     title={v.name + (oos ? ' — Sold out' : '')}
                     aria-label={v.name} aria-pressed={isSel}
+                    className="variant-thumb"
                     style={{
                       width:36, height:36, borderRadius:5, overflow:'hidden', padding:0,
                       cursor: oos ? 'not-allowed' : 'pointer',

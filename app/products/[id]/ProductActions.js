@@ -90,11 +90,11 @@ export default function ProductActions({ product, whatsappNumber }) {
         <div style={{ display:'flex', alignItems:'center', gap:0 }}>
           <div className="stepper" style={{ borderRadius:4 }}>
             <button className="s-btn" onClick={() => setQty(q => Math.max(1, q-1))}
-              aria-label="Decrease quantity" style={{ borderRadius:'4px 0 0 4px' }}>−</button>
+              aria-label="Decrease quantity" style={{ borderRadius:'4px 0 0 4px', minWidth:44, minHeight:44 }}>−</button>
             <span className="s-val" style={{ minWidth:'2.8rem', fontSize:'.9rem', fontWeight:400 }}>{qty}</span>
             <button className="s-btn" onClick={() => setQty(q => Math.min(activeStock, q+1))}
               disabled={!canAdd || qty >= activeStock}
-              aria-label="Increase quantity" style={{ borderRadius:'0 4px 4px 0' }}>+</button>
+              aria-label="Increase quantity" style={{ borderRadius:'0 4px 4px 0', minWidth:44, minHeight:44 }}>+</button>
           </div>
           {activeStock > 0 && activeStock <= 10 && (
             <span style={{ marginLeft:12, fontSize:'.7rem', color:'#fbbf24', letterSpacing:'.08em' }}>

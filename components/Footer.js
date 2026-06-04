@@ -4,7 +4,7 @@ export default function Footer() {
     <footer style={{marginTop:'5rem',background:'rgba(7,0,15,.97)',borderTop:'1px solid rgba(139,92,246,.14)'}}>
       <div className="pline"/>
       <div style={{maxWidth:1280,margin:'0 auto',padding:'3rem 1.25rem'}}>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:'2rem'}}>
+        <div className="footer-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:'2rem'}}>
           <div style={{gridColumn:'span 2'}}>
             <div className="shimmer d" style={{fontSize:'2.5rem',fontWeight:700}}>B & B</div>
             <div style={{fontSize:8,letterSpacing:'0.5em',textTransform:'uppercase',color:'var(--muted)',margin:'4px 0 16px'}}>Atelier</div>

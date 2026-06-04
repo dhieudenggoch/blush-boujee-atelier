@@ -49,13 +49,13 @@ export default function Navbar() {
   return (
     <>
       <nav style={{position:'fixed',top:0,left:0,right:0,zIndex:50,transition:'background .4s,border .4s',background:navBg,backdropFilter:mounted&&scrolled?'blur(16px)':'none',borderBottom:navBdr}}>
-        <div style={{maxWidth:1280,margin:'0 auto',padding:'0 1.25rem',display:'flex',alignItems:'center',justifyContent:'space-between',height:136}}>
+        <div style={{maxWidth:1280,margin:'0 auto',padding:'0 1.25rem',display:'flex',alignItems:'center',justifyContent:'space-between',height:'clamp(72px,10vw,136px)'}}>
 
-          {/* Hamburger — only on mobile */}
+          {/* Hamburger — only on mobile (hidden via CSS .bb-ham) */}
           <button
             onClick={()=>setMenu(o=>!o)}
-            aria-label="Menu"
-            style={{background:'none',border:'none',cursor:'pointer',color:'var(--pur-l)',padding:6,flexShrink:0}}
+            aria-label={menu ? 'Close menu' : 'Open menu'}
+            style={{background:'none',border:'none',cursor:'pointer',color:'var(--pur-l)',padding:8,flexShrink:0,touchAction:'manipulation',minWidth:44,minHeight:44,display:'flex',alignItems:'center',justifyContent:'center'}}
             className="bb-ham"
           >
             <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,12 +72,30 @@ export default function Navbar() {
               alt="Blush & Boujee Atelier"
               width={320}
               height={213}
-              style={{width:'auto',height:'clamp(112px,14vw,154px)',objectFit:'contain',background:'transparent',filter:'brightness(1.15) saturate(1.2)'}}
+              style={{width:'auto',height:'clamp(64px,10vw,120px)',objectFit:'contain',background:'transparent',filter:'brightness(1.15) saturate(1.2)'}}
               priority
             />
           </Link>
 
           <div style={{flex:1}} />
+
+          {/* Desktop nav links — hidden on mobile via CSS */}
+          <div className="bb-desk-icon" style={{position:'absolute',left:'50%',transform:'translateX(-50%)',top:'50%',marginTop:50,display:'flex',gap:28,alignItems:'center',pointerEvents:'none'}}>
+            {[
+              {l:'All Bags',       h:'/products'},
+              {l:'Crossbody',      h:'/products?category=Crossbody%20Bags'},
+              {l:'Tote Bags',      h:'/products?category=Tote%20Bags'},
+              {l:'Feminine Bags',  h:'/products?category=Feminine%20Bags'},
+            ].map(lnk => (
+              <Link key={lnk.h} href={lnk.h}
+                style={{fontSize:'.68rem',letterSpacing:'.28em',textTransform:'uppercase',color:'var(--muted)',textDecoration:'none',transition:'color .2s',pointerEvents:'auto'}}
+                onMouseEnter={e=>e.target.style.color='var(--pur-l)'}
+                onMouseLeave={e=>e.target.style.color='var(--muted)'}
+              >
+                {lnk.l}
+              </Link>
+            ))}
+          </div>
 
           {/* Right icons */}
           <div style={{display:'flex',alignItems:'center',gap:16}}>
@@ -86,7 +104,7 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
               </svg>
             </Link>
-            <button onClick={()=>setDrawer(true)} aria-label="Cart" style={{background:'none',border:'none',cursor:'pointer',color:'var(--muted)',position:'relative',padding:4,display:'flex'}}>
+            <button onClick={()=>setDrawer(true)} aria-label="Cart" style={{background:'none',border:'none',cursor:'pointer',color:'var(--muted)',position:'relative',padding:8,display:'flex',alignItems:'center',justifyContent:'center',minWidth:44,minHeight:44,touchAction:'manipulation'}}>
               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
               </svg>
@@ -101,7 +119,7 @@ export default function Navbar() {
 
         {/* Mobile nav */}
         {menu && (
-          <div style={{background:'rgba(9,0,18,0.97)',borderTop:'1px solid rgba(139,92,246,0.14)',padding:'10px 20px'}}>
+          <div style={{background:'rgba(9,0,18,0.97)',borderTop:'1px solid rgba(139,92,246,0.14)',padding:'6px 20px 12px'}}>
             {[
               {l:'All Bags',       h:'/products'},
               {l:'Crossbody Bags', h:'/products?category=Crossbody%20Bags'},
@@ -109,7 +127,7 @@ export default function Navbar() {
               {l:'Feminine Bags',  h:'/products?category=Feminine%20Bags'},
             ].map(lnk => (
               <Link key={lnk.h} href={lnk.h} onClick={()=>setMenu(false)}
-                style={{display:'block',padding:'13px 0',fontSize:'.78rem',letterSpacing:'.3em',textTransform:'uppercase',color:'var(--textm)',textDecoration:'none',borderBottom:'1px solid rgba(139,92,246,0.08)'}}>
+                style={{display:'block',padding:'14px 0',fontSize:'.78rem',letterSpacing:'.3em',textTransform:'uppercase',color:'var(--textm)',textDecoration:'none',borderBottom:'1px solid rgba(139,92,246,0.08)'}}>
                 {lnk.l}
               </Link>
             ))}
@@ -147,7 +165,7 @@ export default function Navbar() {
                     {item.image ? <img src={item.image} alt={item.name} style={{width:'100%',height:'100%',objectFit:'cover'}}/> : <span style={{fontSize:'1.6rem'}}>👜</span>}
                   </div>
                   <div style={{flex:1,minWidth:0}}>
-                    <p className="d" style={{color:'#fff',fontSize:'.88rem',lineHeight:1.3,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{item.name}</p>
+                    <p className="d drawer-item-name" style={{color:'#fff',fontSize:'.88rem',lineHeight:1.3}}>{item.name}</p>
                     {item.selectedColor && (
                       <div style={{display:'flex',alignItems:'center',gap:5,marginTop:3}}>
                         <div style={{width:10,height:10,borderRadius:'50%',background:item.selectedColor,border:'1px solid rgba(255,255,255,0.3)'}}/>

@@ -24,9 +24,9 @@ export default function AdminNav() {
         .an-links{display:flex;gap:4px}
         .an-link{padding:6px 12px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-radius:4px;transition:color .2s,background .2s}
         .an-link:hover{color:#fff;background:rgba(139,92,246,.15)}
-        .an-ham{background:none;border:none;cursor:pointer;color:var(--pur-l);display:none}
+        .an-ham{background:none;border:none;cursor:pointer;color:var(--pur-l);display:none;min-width:44px;min-height:44px;align-items:center;justify-content:center;touch-action:manipulation}
         .an-mob{display:none;background:rgba(9,0,18,.99);border-top:1px solid rgba(139,92,246,.12);padding:8px 20px}
-        .an-mob a{display:block;padding:11px 0;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--textm);text-decoration:none;border-bottom:1px solid rgba(139,92,246,.08)}
+        .an-mob a{display:block;padding:14px 0;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--textm);text-decoration:none;border-bottom:1px solid rgba(139,92,246,.08)}
         .an-vs{color:var(--muted);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
         @media(max-width:640px){.an-ham{display:flex!important}.an-links{display:none!important}.an-vs{display:none!important}.an-mob.open{display:block!important}}
       `}</style>

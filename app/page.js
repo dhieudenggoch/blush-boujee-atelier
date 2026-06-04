@@ -30,11 +30,21 @@ export default async function Home() {
           @media(max-width:860px){
             .hero-text-panel{
               left:0!important; right:0!important; top:auto!important;
-              bottom:0!important; padding:2rem 1.5rem 3rem!important;
-              background:linear-gradient(to top,rgba(7,0,15,.97) 0%,rgba(7,0,15,.85) 60%,transparent 100%)!important;
+              bottom:0!important; padding:2rem 1.25rem 3.5rem!important;
+              width:100%!important;
+              background:linear-gradient(to top,rgba(7,0,15,.98) 0%,rgba(7,0,15,.92) 55%,rgba(7,0,15,.6) 80%,transparent 100%)!important;
             }
-            .hero-btns-row{flex-direction:column!important}
-            .hero-stats-row{justify-content:flex-start!important}
+            .hero-btns-row{flex-direction:column!important; align-items:stretch!important}
+            .hero-btns-row a,.hero-btns-row button{width:100%!important; display:block!important; box-sizing:border-box!important}
+            .hero-stats-row{justify-content:flex-start!important; gap:1.5rem!important}
+          }
+          @media(max-width:480px){
+            .hero-text-panel{ padding:1.5rem 1rem 5rem!important }
+            .hero-h1{font-size:clamp(2.6rem,12vw,4rem)!important}
+            .hero-stats-row{gap:1rem!important}
+            .hero-stat-val{font-size:1.6rem!important}
+            .hero-stat-lbl{font-size:10px!important; letter-spacing:.15em!important}
+            .hero-tagline{font-size:12px!important; letter-spacing:.25em!important}
           }
           @media(min-width:640px){.pillars-grid{grid-template-columns:repeat(4,1fr)!important}}
         `}</style>
@@ -70,24 +80,24 @@ export default async function Home() {
           }}>
             <div className="ht1 divider" style={{maxWidth:320,marginBottom:'1.75rem',fontSize:'1rem'}}><span>Curated Luxury Goods</span></div>
 
-            <h1 className="ht2 d" style={{color:'#fff',lineHeight:1.05,marginBottom:'1.25rem',fontSize:'clamp(3.8rem,5.8vw,7rem)',fontWeight:300}}>
+            <h1 className="ht2 d hero-h1" style={{color:'#fff',lineHeight:1.05,marginBottom:'1.25rem',fontSize:'clamp(2.8rem,5.8vw,7rem)',fontWeight:300}}>
               <span style={{display:'block'}}>Luxury You</span>
               <span className="shimmer" style={{display:'block',fontWeight:500}}>Can Carry</span>
             </h1>
 
             <p className="ht3" style={{color:'var(--textm)',fontSize:'clamp(1.1rem,1.6vw,1.35rem)',letterSpacing:'.04em',marginBottom:12,maxWidth:440}}>Designed for the feminine touch.</p>
-            <p className="ht3" style={{color:'#cdbfdf',fontSize:14,letterSpacing:'.5em',textTransform:'uppercase',marginBottom:'2.25rem'}}>Timeless · Feminine · Sophisticated</p>
+            <p className="ht3 hero-tagline" style={{color:'#cdbfdf',fontSize:14,letterSpacing:'.4em',textTransform:'uppercase',marginBottom:'2.25rem'}}>Timeless · Feminine · Sophisticated</p>
 
-            <div className="ht4 hero-btns-row" style={{display:'flex',flexWrap:'wrap',gap:12,marginBottom:'2.75rem'}}>
-              <Link href="/products"><button className="btn-p" style={{width:'auto',display:'inline-block',padding:'1.2rem 2.8rem',fontSize:'1rem'}}>Shop the Collection</button></Link>
-              <Link href="/products?category=Crossbody%20Bags"><button className="btn-o" style={{width:'auto',display:'inline-block',padding:'1.2rem 2.8rem',fontSize:'1rem'}}>Explore Categories</button></Link>
+            <div className="ht4 hero-btns-row" style={{display:'flex',flexWrap:'wrap',gap:12,marginBottom:'2rem'}}>
+              <Link href="/products" style={{display:'block'}}><button className="btn-p" style={{whiteSpace:'nowrap',padding:'1rem 2rem',fontSize:'.88rem'}}>Shop the Collection</button></Link>
+              <Link href="/products?category=Crossbody%20Bags" style={{display:'block'}}><button className="btn-o" style={{whiteSpace:'nowrap',padding:'1rem 2rem',fontSize:'.88rem'}}>Explore Categories</button></Link>
             </div>
 
-            <div className="ht5 hero-stats-row" style={{display:'flex',gap:'2.5rem',paddingTop:'1.75rem',borderTop:'1px solid rgba(139,92,246,.18)'}}>
+            <div className="ht5 hero-stats-row" style={{display:'flex',gap:'2rem',paddingTop:'1.5rem',borderTop:'1px solid rgba(139,92,246,.18)',flexWrap:'nowrap'}}>
               {[['500+','Clients'],['100%','Authentic'],['Free','Delivery*']].map(([v,l])=>(
-                <div key={l}>
-                  <div className="d" style={{fontSize:'2.2rem',color:'var(--pur-l)',lineHeight:1}}>{v}</div>
-                  <div style={{fontSize:13,letterSpacing:'.3em',textTransform:'uppercase',color:'#c8b0e0',marginTop:7}}>{l}</div>
+                <div key={l} style={{flexShrink:0}}>
+                  <div className="d hero-stat-val" style={{fontSize:'2rem',color:'var(--pur-l)',lineHeight:1}}>{v}</div>
+                  <div className="hero-stat-lbl" style={{fontSize:11,letterSpacing:'.2em',textTransform:'uppercase',color:'#c8b0e0',marginTop:6}}>{l}</div>
                 </div>
               ))}
             </div>
@@ -164,7 +174,7 @@ export default async function Home() {
         <div className="divider" style={{marginBottom:'2rem'}}><span>Join the Club</span></div>
         <h2 className="d" style={{color:'#fff',fontSize:'clamp(2.6rem,5vw,4rem)',marginBottom:'1rem'}}>Be the First to Know</h2>
         <p style={{color:'#ddd0f0',fontSize:'1.05rem',marginBottom:'2rem',fontWeight:300}}>New arrivals, exclusive deals, and luxury inspo — delivered to your inbox.</p>
-        <div style={{display:'flex',flexWrap:'wrap'}}>
+        <div className="newsletter-row" style={{display:'flex',flexWrap:'wrap'}}>
           <input type="email" placeholder="Your email address" className="inp" style={{flex:1,minWidth:200}}/>
           <button className="btn-p" style={{width:'auto',padding:'0 1.5rem',flexShrink:0}}>Subscribe</button>
         </div>

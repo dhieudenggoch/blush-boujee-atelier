@@ -406,7 +406,7 @@ export default function Checkout() {
                           {item.image?<img src={item.image} alt={item.name} style={{width:'100%',height:'100%',objectFit:'cover'}}/>:<span style={{fontSize:'1.4rem'}}>👜</span>}
                         </div>
                         <div style={{flex:1,minWidth:0}}>
-                          <p style={{color:'#fff',fontSize:'.82rem',lineHeight:1.3,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{item.name}</p>
+                          <p style={{color:'#fff',fontSize:'.82rem',lineHeight:1.3,wordBreak:'break-word'}}>{item.name}</p>
                           <p style={{color:'var(--muted)',fontSize:'.7rem',marginTop:2}}>{fmt(item.price)} each</p>
                           <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:8}}>
                             <div className="stepper" style={{transform:'scale(0.82)',transformOrigin:'left center'}}>
